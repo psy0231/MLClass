@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>http://127.0.0.1:8000/basic/csstest</title>
+
+    <script type="text/JavaScript"
+              src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    {% load static %}
+    <link href="{% static '/style.css' %}" rel="Stylesheet" type="text/css">
+
+    <script type="text/javascript">
+      function basic() {
+        $('#rname').val('바다전망 30평'); // 태그의 id가 'rname'인 태그 찾기
+        $('#py').val(30);
+        $('#cnt').val(3);
+      }
+
+      // 정규 표현식, 천단위 구분자 변환
+      function comma(su) {
+        return su.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      function increaseCnt() {
+        let cnt = parseInt($('#cnt').val()) + 1; // id가 cnt인 태그의 값을 읽어서 정수형으로 변경한 후 +1 처리
+        if (cnt > 10) {
+          alert('최대 인원수는 10명까지입니다.');
+          cnt = 10;
+        }
+        $('#cnt').val(cnt);
+      }
+
+      function decreaseCnt() {
+        let cnt = parseInt($('#cnt').val()) - 1;
+        if (cnt < 1) {
+          alert('최소 인원수는 1명입니다.');
+          cnt = 1;
+        }
+        $('#cnt').val(cnt);
+      }
+
+      function send1() {
+        if ($.trim($('#rname').val()).length <= 1) { // $.trim(): 문자열 앞뒤의 공백 제거
+          alert('객실명을 입력해주세요.');
+          $('#rname').focus();
+          return;  // 실행 중지
+        }
+
+        if ($.trim($('#py').val()).length == 0) {
+          alert('평수를 입력해주세요.')
+          $('#py').focus();
+          return;  // 실행 중지
+        }
+
+        if ($('#py').val() < 10) {
+          alert('평수는 10평 이상이어야 합니다.')
+          $('#py').focus();
+          return;  // 실행 중지
+        }
+
+        if ($.trim($('#cnt').val()).length == 0) {
+          alert('인원수를 입력해주세요.')
+          $('#cnt').focus();
+          return;  // 실행 중지
+        }
+
+        if ($('#cnt').val() <= 0) {
+          alert('인원수는 최소 1명 이상이어야합니다.')
+          $('#cnt').focus();
+          return;  // 실행 중지
+        }
+
+        alert('신청 했습니다.');
+      }
+
+      function price(f) { // this.form -> f == document.frm 동일
+        if ($.trim($('#cnt').val()).length == 0) {
+          alert('인원수를 입력하세요.');
+          $('#cnt').focus();
+        } else {
+          let amount = parseInt($('#cnt').val()) * 30000; // 인원당 3만원 처리
+          amount = comma(amount);
+          alert('결재 예상 금액: ' + amount);
+        }
+      }
+
+    </script>
+</head>
+<body>
+  <DIV class='main'>
+    <DIV class='title'>펜션 예약</DIV>
+    <form name='frm' id='frm' action='' method='post'> 
+      <ul class='item'>
+        <li>
+          객실: <input type='text' name='rname' id='rname' value='' required="required">
+        </li>
+        <li>
+          크기: <input type='number' name='py' id='py' value='' step='1' min='5' max='50'> 평
+        </li>
+        <li>
+          인원: <input type='number' name='cnt' id='cnt' value='' step='1' min='1' max='10'> 명
+        </li>
+      </ul>
+      <DIV class='bottom_menu'>
+          <button type='button' onclick="basic();">기본 예약</button>
+          <button type='button' onclick="increaseCnt();">인원 증가</button>
+          <button type='button' onclick="decreaseCnt();">인원 감소</button>
+          <button type='reset'>입력값 삭제</button>
+          <button type='button' onclick="send1();">신청</button>
+          <!-- this.form: 현재 태그가 위치한 폼을 나타냄. -->
+          <button type='button' onclick="price(this.form);">금액 계산</button>
+       </DIV>
+    </form>
+</DIV>
+</body>
+</html>
+

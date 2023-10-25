@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>추천 시스템</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .img {
+          width: 150px;
+          height: 120px;
+        }
+      </style>
+</head>
+<body>
+    <div style="width: 70%; margin: 30px auto; text-align: center;">
+        <h2>추천 시스템</h2>
+        <h3>{{recommend_result.label}} 동호회를 추천합니다.</h3>
+        <br><br>
+        {% if recommend_result.index == 0 %}
+            <img src="/static/images/1.jpg" class="img">
+            <img src="/static/images/8.jpg" class="img">
+            <img src="/static/images/15.jpg" class="img">
+            <img src="/static/images/22.jpg" class="img">
+            <img src="/static/images/29.jpg" class="img">
+            <img src="/static/images/36.jpg" class="img">
+            <img src="/static/images/43.jpg" class="img">
+        {% elif recommend_result.index == 1 %}
+            <img src="/static/images/2.jpg" class="img">
+            <img src="/static/images/9.jpg" class="img">
+            <img src="/static/images/16.jpg" class="img">
+            <img src="/static/images/23.jpg" class="img">
+            <img src="/static/images/30.jpg" class="img">
+            <img src="/static/images/37.jpg" class="img">
+            <img src="/static/images/44.jpg" class="img">
+        {% elif recommend_result.index == 2 %}
+            <img src="/static/images/3.jpg" class="img">
+            <img src="/static/images/10.jpg" class="img">
+            <img src="/static/images/17.jpg" class="img">
+            <img src="/static/images/24.jpg" class="img">
+            <img src="/static/images/31.jpg" class="img">
+            <img src="/static/images/38.jpg" class="img">
+            <img src="/static/images/45.jpg" class="img">
+        {% elif recommend_result.index == 3 %}
+            <img src="/static/images/4.jpg" class="img">
+            <img src="/static/images/11.jpg" class="img">
+            <img src="/static/images/18.jpg" class="img">
+            <img src="/static/images/25.jpg" class="img">
+            <img src="/static/images/32.jpg" class="img">
+            <img src="/static/images/39.jpg" class="img">
+            <img src="/static/images/46.jpg" class="img">
+        {% elif recommend_result.index == 4 %}
+            <img src="/static/images/5.jpg" class="img">
+            <img src="/static/images/12.jpg" class="img">
+            <img src="/static/images/19.jpg" class="img">
+            <img src="/static/images/26.jpg" class="img">
+            <img src="/static/images/33.jpg" class="img">
+            <img src="/static/images/40.jpg" class="img">
+            <img src="/static/images/47.jpg" class="img">
+        {% elif recommend_result.index == 5 %}
+            <img src="/static/images/6.jpg" class="img"> <a href="">설악산 산악 동호회</a>
+            <img src="/static/images/13.jpg" class="img"> <a href="">강화도 산악 동호회</a>
+            <img src="/static/images/20.jpg" class="img"> <a href="">북한산 산악 동호회</a>
+            <img src="/static/images/27.jpg" class="img"> <a href="">지리산 산악 동호회</a><br>
+            <img src="/static/images/34.jpg" class="img"> <a href="">북한산 산악 동호회</a>
+            <img src="/static/images/41.jpg" class="img"> <a href="">청계산 산악 동호회</a>
+            <img src="/static/images/48.jpg" class="img"> <a href="">오대산 산악 동호회</a>     
+        {% elif recommend_result.index == 6 %}
+            <img src="/static/images/7.jpg" class="img">
+            <img src="/static/images/14.jpg" class="img">
+            <img src="/static/images/21.jpg" class="img">
+            <img src="/static/images/28.jpg" class="img">
+            <img src="/static/images/35.jpg" class="img">
+            <img src="/static/images/42.jpg" class="img">
+            <img src="/static/images/49.jpg" class="img">                
+        {% endif %}
+        <br><br>
+        <button type="button" onclick="location.href='/ais/recommend_form/'" class="btn btn-info btn-sm">관심 분야 수정</button>
+    </div>
+
+</body>
+</html>

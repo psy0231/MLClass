@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>http://127.0.0.1:8000/basic/jsinclude</title>
+
+{% load static %}
+<script src="{% static '/tool.js' %}"></script>
+
+<script type="text/javascript">
+  // html이 브러우저의 메모리상에 모두 loading 되고나서 실행됨 
+  window.onload = display; // js는 함수를 변수처럼 할당 가능함.
+
+  function display() {
+    let pay = document.getElementById("pay")
+    console.log('-> ' + pay);
+    console.log('-> ' + comma(2500000));
+    pay.innerHTML = comma(2500000);
+
+    let tot = document.getElementById("tot")
+    tot.innerHTML = add(90, 100);
+
+  }
+
+</script>
+
+</head>
+<body>
+  <DIV id="pay" style='font-size: 24px;'></DIV>
+  <DIV id="tot" style='font-size: 24px;'></DIV>
+</body>
+</html>

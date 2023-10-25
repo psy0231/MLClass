@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>추천 시스템</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+      .img {
+        width: 150px;
+        height: 120px;
+      }
+
+      .selected {
+        border: 3px solid #AA0000;
+      }
+
+      .brighten {
+        filter: brightness(150%);
+      }
+
+    </style>
+
+    <script>
+        function applyCSS(event) {
+          const img = event.target;
+          img.classList.toggle('selected');
+          img.classList.toggle('brighten');
+
+          // let pic = document.getElementById('pic1'); // 태그 검색
+          // let img = pic.getElementsByTagName('img')[0]; // 첫번째 이미지 태그
+          let sw = img.getAttribute("data-value");   // 값 추출
+          if (sw == 0) {
+            img.setAttribute("data-value", 1);
+          } else {
+            img.setAttribute("data-value", 0);
+          }
+
+          document.getElementById("panel").innerHTML = ""; // 이미지 선택시 기존에 출력된 이미지 삭제
+
+        }
+
+        function send() {
+          // let tags = document.getElementsByName("recommend");
+          let tags = document.querySelectorAll("[name='recommend']");
+          let values=[];
+          // console.log('-> ' + tags.length);
+
+          let pick_count = 0; // 선택한 이미지 카운터
+          for(let i=0; i < tags.length; i++) {
+            let tag = tags[i]
+            let pick = tag.getAttribute("data-value");
+            // console.log('-> ' + pick);
+            values.push(pick);
+
+            if (pick == 1 ) { // 선택한 이미지이면 카운터 증가
+              pick_count = pick_count + 1;
+            }
+          }
+
+          console.log(values);
+
+          if (pick_count == 7) { // 이미지가 7개 선택되면 다음으로 자동 진행
+            // console.log(values);
+            let recommend_data = values.join(",");
+            // console.log('-> recommend_data: ' + recommend_data);
+
+            
+            document.getElementById("recommend_data").setAttribute("value", recommend_data);
+            document.getElementById("panel").innerHTML = '<img src="/static/images/ani04.gif" style="width: 5%; margin-top: 20px;">'; 
+            document.getElementById("frm").submit();
+            // document.frm.submit();
+          } else if (pick_count > 7) { // 이미지가 7개 이상 선택되면 메시지 출력
+            document.getElementById("panel").innerHTML = "<br>이미지 선택은 7개만 가능합니다.<br>";
+          } else {
+            document.getElementById("panel").innerHTML = "<br>이미지 선택이 부족합니다.<br>";
+          }
+        }
+    </script>
+</head>
+<body>
+    <form id="frm" action="/ais/recommend_proc/" method="post">
+      {% csrf_token %}
+      <input type="hidden" id="memberno" name="memberno" value="{{memberno}}">
+      <input type="hidden" id="recommend_data" name="recommend_data" value="">
+    </form>
+
+    <div style="width: 90%; margin: 30px auto; text-align: center;">
+        <h2>추천 시스템</h2>
+        <b>관심있는 이미지를 7개를 선택하세요.</b>
+    </div>
+
+    <div style="width: 90%; margin: 30px auto; text-align: center;">
+        {% for filename in filenames %}
+            <img id="{{forloop.counter}}" name="recommend" src="/static/images/{{filename}}.jpg" class="img" onclick="applyCSS(event)"
+                 data-value="0">
+        {% endfor %}
+    
+        <br>
+        <div id="panel"></div>
+        <br>
+        <button type="button" onclick="send()" class="btn btn-info btn-sm">관심 분야 등록</button>
+    </div>
+        
+</body>
+</html>

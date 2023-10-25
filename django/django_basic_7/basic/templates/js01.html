@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>http://127.0.0.1:8000/basic/js01</title>
+</head>
+<body>
+  <DIV style='font-size: 24px;'>
+    <script type="text/javascript">
+      let url1 = 'http://www.kma.go.kr';
+      document.writeln('url1: ' + url1 + '<br>');
+      document.writeln('5/3: ' + 5/3 + '<br>');
+      document.writeln('5%3: ' + 5%3 + '<br>');
+
+      let java = 90;
+      let js = 90.5;
+      document.writeln('url1 타입: ' + typeof url1 + '<br>');
+      document.writeln('java 타입: ' + typeof java + '<br>');
+      document.writeln('js 타입: ' + typeof js + '<br>');
+
+      java = '90';
+      js = '90.5';
+      let tot = java + js;   // 문자열 연결
+      document.writeln('tot: ' + tot + '<br>'); // tot: 9090.5
+
+      java = parseInt(java); // 전역 함수
+      js = parseFloat(js);
+      tot = java + js;
+      document.writeln('tot: ' + tot + '<br>'); // tot: 180.5
+    </script>
+  </div>
+</body>
+</html>
+

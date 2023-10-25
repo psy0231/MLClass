@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>추천 시스템</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .img {
+          width: 150px;
+          height: 120px;
+        }
+      </style>
+</head>
+<body>
+    <div style="width: 70%; margin: 30px auto; text-align: center;">
+        <h2>추천 시스템</h2>
+        <b>추천: {{recommend_result.label}}({{recommend_result.per}} %)</b>
+        <br><br>
+        {% if recommend_result.index == 0 %}
+            <img src="/static/images/1.jpg" class="img">
+            <img src="/static/images/6.jpg" class="img">
+            <img src="/static/images/11.jpg" class="img">
+            <img src="/static/images/16.jpg" class="img">
+            <img src="/static/images/21.jpg" class="img">
+        {% elif recommend_result.index == 1 %}
+            <img src="/static/images/2.jpg" class="img">
+            <img src="/static/images/7.jpg" class="img">
+            <img src="/static/images/12.jpg" class="img">
+            <img src="/static/images/17.jpg" class="img">
+            <img src="/static/images/22.jpg" class="img">
+        {% elif recommend_result.index == 2 %}
+            <img src="/static/images/3.jpg" class="img">
+            <img src="/static/images/8.jpg" class="img">
+            <img src="/static/images/13.jpg" class="img">
+            <img src="/static/images/18.jpg" class="img">
+            <img src="/static/images/23.jpg" class="img">
+        {% elif recommend_result.index == 3 %}
+            <img src="/static/images/4.jpg" class="img">
+            <img src="/static/images/9.jpg" class="img">
+            <img src="/static/images/14.jpg" class="img">
+            <img src="/static/images/19.jpg" class="img">
+            <img src="/static/images/24.jpg" class="img">
+        {% elif recommend_result.index == 4 %}
+            <img src="/static/images/5.jpg" class="img">
+            <img src="/static/images/10.jpg" class="img">
+            <img src="/static/images/15.jpg" class="img">
+            <img src="/static/images/20.jpg" class="img">
+            <img src="/static/images/25.jpg" class="img">
+        {% endif %}
+        <br><br>
+        <button type="button" onclick="location.href='/ais/recommend_form/'" class="btn btn-info btn-sm">관심 분야 수정</button>
+    </div>
+
+</body>
+</html>

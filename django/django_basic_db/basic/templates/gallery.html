@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+  <META charset="utf-8">
+  <TITLE>http://127.0.0.1:8000/basic/html/gallery/</TITLE>
+  {% load static %}
+ </HEAD>
+
+ <BODY>
+   <!-- A: Hyper Link 지원, 마우스 클릭 기능, 클릭후 이동할 주소 명시 -->
+   <A href="https://www.daum.net">Daum</A>
+   <A href="https://m.daum.net">Daum Mobile</A>
+   <A href="https://www.kma.go.kr" target="_blank">기상청</A>
+   <A href="{% static '/html/images/summer01.jpg' %}">가고싶은 곳</A>
+   <br><br>
+   <IMG src="{% static '/html/images/summer01.jpg' %}" style="width: 20%;">
+   <br>
+   <A href="{% static '/html/images/summer02.jpg' %}"><IMG src="{% static '/html/images/summer02.jpg' %}" style="width: 20%;"></A>
+   <A href="{% static '/html/images/summer03.jpg' %}"><IMG src="{% static '/html/images/summer03.jpg' %}" style="width: 20%;"></A>
+   <br>
+   <A href="{% static '/html/images/summer04.jpg' %}"><IMG src="{% static '/html/images/summer04.jpg' %}" style="width: 20%;"></A>
+   <A href="{% static '/html/images/summer05.jpg' %}"><IMG src="{% static '/html/images/summer05.jpg' %}" style="width: 20%;"></A>
+ </BODY>
+</HTML>
+
